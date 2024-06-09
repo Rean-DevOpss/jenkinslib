@@ -5,27 +5,29 @@ pipeline {
         DOCKER_TAG = "${BUILD_NUMBER}"
     }
     parameters {
-     booleanParam(name: "TEST_BOOLEAN", defaultValue: true, description: "Sample boolean parameter")
-     string(name: "TEST_STRING", defaultValue: "dara", trim: true, description: "Sample string parameter")
-     text(name: "TEST_TEXT", defaultValue: "Jenkins Pipeline Tutorial", description: "Sample multi-line text parameter")
-     password(name: "TEST_PASSWORD", defaultValue: "SECRET", description: "Sample password parameter")
-     choice(name: "TEST_CHOICE", choices: ["production", "staging", "development"], description: "Samplemulti-choice parameter")
+        booleanParam(name: "TEST_BOOLEAN", defaultValue: true, description: "Sample boolean parameter")
+        string(name: "TEST_STRING", defaultValue: "dara", trim: true, description: "Sample string parameter")
+        text(name: "TEST_TEXT", defaultValue: "Jenkins Pipeline Tutorial", description: "Sample multi-line text parameter")
+        password(name: "TEST_PASSWORD", defaultValue: "SECRET", description: "Sample password parameter")
+        choice(name: "TEST_CHOICE", choices: ["production", "staging", "development"], description: "Sample multi-choice parameter")
     }
   
     stages {
-        stage('git clone'){
-            steps{
+        stage('Git Clone') {
+            steps {
                 git 'https://github.com/MuyleangIng/nextjs_docker.git'
             }
         }
         stage('Write Docker file to git Repo') {
             steps {
-            echo "build number is ${BUILD_NUMBER}"
+                script {
+                    echo "Build number is ${BUILD_NUMBER}"
+                    nextWithDocker(DOCKER_TAG)
+                }
             }
         }
-
-        stage('list dir'){
-            steps{
+        stage('List Directory') {
+            steps {
                 sh "ls -lrt"
             }
         }
