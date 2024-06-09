@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Git Clone') {
             steps {
-                git 'https://github.com/roldophe/my-angular-project.git'
+                git branch: 'main', url: 'https://github.com/roldophe/my-angular-project.git'
             }
         }    
         stage('Build and Push Docker Image') {
