@@ -41,7 +41,7 @@ pipeline {
                         tag: env.TAG,
                         containerPort: env.CONTAINER_PORT,
                         hostPort: env.HOST_PORT
-                        containerName: "${env.IMAGE}-${env.TAG}"
+                        containerName: env.CONTAINER_NAME
                     )
                 }
             }
