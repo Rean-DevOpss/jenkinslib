@@ -3,6 +3,7 @@ pipeline {
     agent any
     environment {
         DOCKER_TAG = "${BUILD_NUMBER}"
+        ImageName = "nextjsdocker"
     }
     parameters {
         booleanParam(name: "TEST_BOOLEAN", defaultValue: true, description: "Sample boolean parameter")
@@ -22,7 +23,7 @@ pipeline {
             steps {
                 script {
                     echo "Build number is ${BUILD_NUMBER}"
-                    nextWithDocker(DOCKER_TAG)
+                    nextWithDocker(DOCKER_TAG,ImageName)
                 }
             }
         }
