@@ -12,11 +12,7 @@ pipeline {
         }
         stage('Write Docker file to git Repo') {
             steps {
-                script{
-                    nextWithDocker(
-                        DOCKER_TAG: ${env.DOCKER_TAG},
-                    )
-                }
+            echo "build number is ${BUILD_NUMBER}"
             }
         }
         stage('list dir'){
