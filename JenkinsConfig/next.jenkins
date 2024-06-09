@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script{
                     nextWithDocker(
-                      
+                      DOCKER_TAG = 3
                     )
                 }
             }
