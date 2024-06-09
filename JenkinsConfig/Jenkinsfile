@@ -10,7 +10,7 @@ pipeline {
         CREDENTIALS_ID = 'dockerhub'
         CONTAINER_PORT = '4000'
         HOST_PORT = '8082'
-        CONTAINER_NAME = "${env.IMAGE}-${env.TAG}"
+        CONTAINER_NAME = "${IMAGE}-${TAG}"
     }
 
     stages {
