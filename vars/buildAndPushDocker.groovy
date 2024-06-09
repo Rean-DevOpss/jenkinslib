@@ -10,7 +10,6 @@ def call(Map config = [:]) {
 
     withCredentials([usernamePassword(credentialsId: credentialsId, passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
         sh """
-            // echo ${DOCKERHUB_PASSWORD} | docker login -u my-dockerhub-username --password-stdin\
             docker login -u ${USERNAME} -p ${PASSWORD}
             docker build -t ${registry}/${image}:${tag} -f angular.dockerfile .
             docker push ${registry}/${image}:${tag}
