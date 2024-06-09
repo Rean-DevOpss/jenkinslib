@@ -40,7 +40,7 @@ pipeline {
                         registry: env.REGISTRY,
                         tag: env.TAG,
                         containerPort: env.CONTAINER_PORT,
-                        hostPort: env.HOST_PORT
+                        hostPort: env.HOST_PORT,
                         containerName: env.CONTAINER_NAME
                     )
                 }
