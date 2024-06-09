@@ -15,7 +15,6 @@ pipeline {
                         DOCKER_USER='shinchanz'
                         DOCKER_PASS='Admin@12345'
                         TAGS=${env.BUILD_NUMBER}
-                        IMAGE_NAME='nextjsdocker'
                     )
                 }
             }
