@@ -12,8 +12,8 @@ pipeline {
             steps {
                 script{
                     nextWithDocker(
-                        DOCKER_USER='shinchanz'
-                        DOCKER_PASS='Admin@12345'
+                        DOCKER_USER= 'shinchanz' ,
+                        DOCKER_PASS= 'Admin@12345' ,
                         TAGS=2
                     )
                 }
