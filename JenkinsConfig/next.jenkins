@@ -10,9 +10,8 @@ pipeline {
      text(name: "TEST_TEXT", defaultValue: "Jenkins Pipeline Tutorial", description: "Sample multi-line text parameter")
      password(name: "TEST_PASSWORD", defaultValue: "SECRET", description: "Sample password parameter")
      choice(name: "TEST_CHOICE", choices: ["production", "staging", "development"], description: "Samplemulti-choice parameter")
-               }
-           }
-
+    }
+  
     stages {
         stage('git clone'){
             steps{
