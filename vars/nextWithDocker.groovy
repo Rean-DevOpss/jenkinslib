@@ -1,6 +1,6 @@
-def call( Integer TAGS) {
+def call() {
     def dockerfileContent = libraryResource 'next.dockerfile'
     writeFile file: 'Dockerfile', text: dockerfileContent
-    sh 'docker build -t nexttest:$TAGS .'
+    sh 'docker build -t nexttest:2 .'
 
 }
