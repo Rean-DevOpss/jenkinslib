@@ -3,4 +3,4 @@ def call(String DOCKER_TAG, String ImageName) {
     writeFile file: 'Dockerfile', text: dockerfileContent
     sh "docker build -t ${ImageName}:${DOCKER_TAG} ."
     sh "echo ${DOCKER_TAG}"
-}
+} 
