@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script{
                     nextWithDocker(
-                      DOCKER_TAG
+                        DOCKER_TAG: DOCKER_TAG,
                     )
                 }
             }
