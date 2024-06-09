@@ -14,7 +14,7 @@ pipeline {
                     nextWithDocker(
                         DOCKER_USER='shinchanz'
                         DOCKER_PASS='Admin@12345'
-                        TAGS=${env.BUILD_NUMBER}
+                        TAGS=2
                     )
                 }
             }
