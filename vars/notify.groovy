@@ -78,7 +78,6 @@ def String dockerBuild(Map params) {
     sh "echo ${dockerImage}"
     // docker rm $(docker ps -a -q)
     // docker rmi $(docker images -q)
-    sh "docker rmi $(docker images -f dangling=true -q)"
     sh "docker rmi -f ${dockerImage}"
     return dockerImage
 }
