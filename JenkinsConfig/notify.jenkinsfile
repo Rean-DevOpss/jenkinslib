@@ -12,7 +12,7 @@ pipeline {
         REGISTRY_NAME = 'docker.io'
         REGISTRY_CREDENTIALS_ID = 'dockerhub'
         
-        IMGAENAME = 'angular-docker'
+        IMAGENAME = 'angular-docker'
         TAG = "${BUILD_NUMBER}"
 
     }
