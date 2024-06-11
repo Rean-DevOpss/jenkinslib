@@ -4,9 +4,6 @@ environment{
         BOT_ID= '6678469501'
         BOT_TOKEN= 'AAGO8syPMTxn0gQGksBPRchC'
         CHAT_ID= '1162994521'
-6678469501:AAGO8syPMTxn0gQGksBPRchC-EoC6QRoS5o
-
-      
 }
 Pipeline {
     agent any
