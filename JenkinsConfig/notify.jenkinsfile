@@ -23,6 +23,14 @@ pipeline {
                 git 'https://github.com/roldophe/my-angular-project.git'
             }
         }
+        stage('Write Docker file to git Repo') {
+            steps {
+                script {
+                    echo "Build number is ${BUILD_NUMBER}"
+                    nextWithDocker(DOCKER_TAG,ImageName)
+                }
+            }
+        }
         stage('Notify') {
             steps {
                 script {
