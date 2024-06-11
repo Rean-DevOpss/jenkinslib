@@ -75,5 +75,10 @@ def String dockerBuild(Map params) {
     sh "docker build -t ${dockerImage} -f angular.dockerfile ."
     def notify = new Notification(steps, this)
     notify.sendTelegram("Build success✅(<:>) Image: ${dockerImage}")
+    sh "echo ${dockerImage}"
+    // docker rm $(docker ps -a -q)
+    // docker rmi $(docker images -q)
+    sh "docker rmi $(docker images -f dangling=true -q)"
+    sh "docker rmi -f ${dockerImage}"
     return dockerImage
 }
