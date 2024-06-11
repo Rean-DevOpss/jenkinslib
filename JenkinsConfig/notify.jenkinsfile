@@ -21,8 +21,8 @@ pipeline {
                     - *Container:* ${env.CONTAINER_NAME}
                     - *Branch:* ${BRANCH}
                     """
-                     notify([
-                            message: "test",
+                    notify([
+                            message: successMessage,
                         ])
                     // try {
                     //     // Your build steps go here
