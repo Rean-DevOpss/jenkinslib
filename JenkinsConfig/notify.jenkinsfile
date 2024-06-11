@@ -8,6 +8,8 @@ pipeline {
         // // Mail configuration (optional)
         // MAIL_FROM = 'your-email@example.com'
         // MAIL_TO = 'recipient-email@example.com'
+        BRANCH = 'main'
+        CONTAINER_NAME = 'angular-docker'
     }
     agent any
     stages {
@@ -16,9 +18,8 @@ pipeline {
                 script {
                     def successMessage = """
                     *Deployment Successful:*
-                    - *Container:* ${params.CONTAINER_NAME}
+                    - *Container:* ${env.CONTAINER_NAME}
                     - *Branch:* ${BRANCH}
-                    - *Deployment URL:* [${env.DEPLOY_IP_PORT}](http://${env.DEPLOY_IP_PORT})
                 """
                     try {
                         // Your build steps go here
