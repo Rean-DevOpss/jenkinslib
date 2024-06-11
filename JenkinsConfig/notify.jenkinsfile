@@ -12,8 +12,8 @@ pipeline {
         REGISTRY_NAME = 'docker.io'
         REGISTRY_CREDENTIALS_ID = 'dockerhub'
         
-        imageName = 'angular-docker'
-        tag = "${BUILD_NUMBER}"
+        IMGAENAME = 'angular-docker'
+        TAG = "${BUILD_NUMBER}"
 
     }
     agent any

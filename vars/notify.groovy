@@ -7,8 +7,8 @@ def call(Map params) {
         withCredentials([usernamePassword(credentialsId: env.REGISTRY_CREDENTIALS_ID, passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
             // docker build
             def imageFull = dockerBuild(username: USERNAME, 
-                imageName: params.imageName, 
-                tag: params.tag,
+                imageName: env.IMGAENAME, 
+                tag: env.TAG,
                 registryName: env.REGISTRY_NAME    
             )
             // docker push
@@ -29,10 +29,12 @@ def call(Map params) {
     }
 }
 def String dockerBuild(Map params){
-    def dockerImage = "${params.username}/${params.imageName}:${params.tag}"
+    def dockerImage = "${params.username}/${params.IMGAENAME}:${params.TAG}"
     if(env.REGISTRY_NAME != 'docker.io'){
-        dockerImage = "${env.REGISTRY_NAME}/${params.imageName}:${params.tag}"
+        dockerImage = "${env.REGISTRY_NAME}/${params.IMGAENAME}:${params.TAG}"
     }
     sh "docker build -t ${dockerImage} -f angular.dockerfile ."
+    def notify = new Notification(steps, this)
+    notify.sendTelegram("Build success✅(<:>) Image: ${dockerImage}")
     return dockerImage
 }
