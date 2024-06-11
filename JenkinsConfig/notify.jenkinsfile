@@ -20,30 +20,33 @@ pipeline {
                     *Deployment Successful:*
                     - *Container:* ${env.CONTAINER_NAME}
                     - *Branch:* ${BRANCH}
-                """
-                    try {
-                        // Your build steps go here
-                        // For example:
-                        sh 'exit 1' // Simulate a build failure
-                    } catch (Exception e) {
-                        notify([
-                            message: successMessage,
-                            // mailParams: [
-                            //     message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
-                            //     subject: "Jenkins Build Failure"
-                            // ]
+                    """
+                     notify([
+                            message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
                         ])
-                        notify(
-                            message: "Build failed⛔(<:>) Error: ${e.getMessage()}"
-                            // mailParams: [
-                            //     message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
-                            //     subject: "Jenkins Build Failure"
-                            // ]
-                        )
-                        echo "Build failed⛔(<:>) Error: ${e.getMessage()}"
-                        currentBuild.result = 'FAILURE'
-                        throw e
-                    }
+                    // try {
+                    //     // Your build steps go here
+                    //     // For example:
+                    //     sh 'exit 1' // Simulate a build failure
+                    // } catch (Exception e) {
+                    //     notify([
+                    //         message: successMessage,
+                    //         // mailParams: [
+                    //         //     message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
+                    //         //     subject: "Jenkins Build Failure"
+                    //         // ]
+                    //     ])
+                    //     notify(
+                    //         message: "Build failed⛔(<:>) Error: ${e.getMessage()}"
+                    //         // mailParams: [
+                    //         //     message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
+                    //         //     subject: "Jenkins Build Failure"
+                    //         // ]
+                    //     )
+                    //     echo "Build failed⛔(<:>) Error: ${e.getMessage()}"
+                    //     currentBuild.result = 'FAILURE'
+                    //     throw e
+                    // }
                 }
             }
         }
