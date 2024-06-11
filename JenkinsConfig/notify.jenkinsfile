@@ -5,11 +5,16 @@ pipeline {
         BOT_ID = '6678469501'
         BOT_TOKEN = 'AAGO8syPMTxn0gQGksBPRchC-EoC6QRoS5o'
         CHAT_ID = '1162994521'
-        // // Mail configuration (optional)
-        // MAIL_FROM = 'your-email@example.com'
-        // MAIL_TO = 'recipient-email@example.com'
+
         BRANCH = 'main'
         CONTAINER_NAME = 'angular-docker'
+        
+        REGISTRY_NAME = 'docker.io'
+        REGISTRY_CREDENTIALS_ID = 'dockerhub'
+        
+        imageName = 'angular-docker'
+        tag = "${BUILD_NUMBER}"
+
     }
     agent any
     stages {
@@ -21,32 +26,7 @@ pipeline {
                     - *Container:* ${env.CONTAINER_NAME}
                     - *Branch:* ${BRANCH}
                     """
-                    notify([
-                            message: successMessage,
-                        ])
-                    // try {
-                    //     // Your build steps go here
-                    //     // For example:
-                    //     sh 'exit 1' // Simulate a build failure
-                    // } catch (Exception e) {
-                    //     notify([
-                    //         message: successMessage,
-                    //         // mailParams: [
-                    //         //     message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
-                    //         //     subject: "Jenkins Build Failure"
-                    //         // ]
-                    //     ])
-                    //     notify(
-                    //         message: "Build failed⛔(<:>) Error: ${e.getMessage()}"
-                    //         // mailParams: [
-                    //         //     message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
-                    //         //     subject: "Jenkins Build Failure"
-                    //         // ]
-                    //     )
-                    //     echo "Build failed⛔(<:>) Error: ${e.getMessage()}"
-                    //     currentBuild.result = 'FAILURE'
-                    //     throw e
-                    // }
+                    notify([message: successMessage,])    
                 }
             }
         }
