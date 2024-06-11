@@ -23,18 +23,25 @@ pipeline {
                 git 'https://github.com/MuyleangIng/angular-jenkins.git'
             }
         }
-        stage('Notify') {
-            steps {
-                script {
-                    // notify()
-                    def successMessage = """
-                    *Deployment Successful:*
-                    - *Container:* ${env.CONTAINER_NAME}
-                    - *Branch:* ${BRANCH}
-                    """
-                    notify([message: successMessage,])    
+        stage('test execution with shell with lib groovy'){
+            steps{
+                script{
+                    scripts()
                 }
             }
         }
+        // stage('Notify') {
+        //     steps {
+        //         script {
+        //             // notify()
+        //             def successMessage = """
+        //             *Deployment Successful:*
+        //             - *Container:* ${env.CONTAINER_NAME}
+        //             - *Branch:* ${BRANCH}
+        //             """
+        //             notify([message: successMessage,])    
+        //         }
+        //     }
+        // }
     }
 }
