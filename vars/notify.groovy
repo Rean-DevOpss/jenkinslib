@@ -1,7 +1,7 @@
 import org.devops.Notification
 
 def call(Map params) {
-    def dockerfileContent = libraryResource 'angular.dockerfile'
+    def dockerfileContent = libraryResource 'docker/angular.dockerfile'
     writeFile file: 'angular.dockerfile', text: dockerfileContent
     try {
         withCredentials([usernamePassword(credentialsId: env.REGISTRY_CREDENTIALS_ID, passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
