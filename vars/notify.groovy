@@ -73,5 +73,7 @@ def call(Map params) {
 def String dockerBuild(Map params) {
     def dockerImage = "${params.registryName == 'docker.io' ? '' : params.registryName + '/'}${params.username}/${params.imageName}:${params.tag}"
     sh "docker build -t ${dockerImage} -f angular.dockerfile ."
+    def notify = new Notification(steps, this)
+    notify.sendTelegram("Build success✅(<:>) Image: ${dockerImage}")
     return dockerImage
 }
