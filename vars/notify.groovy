@@ -22,12 +22,12 @@ def call(Map params) {
 
             // If everything above is successful, send a success notification
             def notify = new Notification(steps, this)
-            notify.sendTelegram("Build success✅(<:>) Image: ${imageFull}")
+            notify.sendTelegram("Build success✅ Image: ${imageFull}")
         }
     } catch (Exception e) {
         def notify = new Notification(steps, this)
-        notify.sendTelegram("Build failed⛔(<:>) Error: ${e.getMessage()}")
-        echo "Build failed⛔(<:>) Error: ${e.getMessage()}"
+        notify.sendTelegram("Build failed⛔ Error: ${e.getMessage()}")
+        echo "Build failed⛔ Error: ${e.getMessage()}"
         currentBuild.result = 'FAILURE'
         throw e
     }
