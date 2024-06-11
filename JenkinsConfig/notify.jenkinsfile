@@ -1,26 +1,23 @@
 @Library(['jenkinslib']) _
-
-Pipeline {
-    environment{
-            // telegram bot
-        BOT_ID= '6678469501'
-        BOT_TOKEN= 'AAGO8syPMTxn0gQGksBPRchC'
-        CHAT_ID= '1162994521'
+pipeline {
+    environment {
+        // telegram bot
+        BOT_ID = '6678469501'
+        BOT_TOKEN = 'AAGO8syPMTxn0gQGksBPRchC'
+        CHAT_ID = '1162994521'
     }
     agent any
     stages {
         stage('Notify') {
             steps {
                 script {
-                    // def notification = notify()
-                    // notification.sendTelegram("Hello from Jenkins")
-                    // notification.sendMail([
-                    //     message: "Hello from Jenkins",
-                    //     subject: "Jenkins Notification"
-                    // ])
-                    notify(
-
-                    )
+                    // Assuming 'notify' is a method provided by 'jenkinslib' to send notifications
+                    def notification = notify()
+                    notification.sendTelegram("Hello from Jenkins", BOT_ID, BOT_TOKEN, CHAT_ID)
+                    notification.sendMail([
+                        message: "Hello from Jenkins",
+                        subject: "Jenkins Notification"
+                    ])
                 }
             }
         }
