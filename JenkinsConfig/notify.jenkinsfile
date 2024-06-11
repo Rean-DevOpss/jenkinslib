@@ -1,23 +1,35 @@
 @Library(['jenkinslib']) _
 pipeline {
     environment {
-        // telegram bot
+        // Telegram bot
         BOT_ID = '6678469501'
         BOT_TOKEN = 'AAGO8syPMTxn0gQGksBPRchC'
         CHAT_ID = '1162994521'
+        // // Mail configuration (optional)
+        // MAIL_FROM = 'your-email@example.com'
+        // MAIL_TO = 'recipient-email@example.com'
     }
     agent any
     stages {
         stage('Notify') {
             steps {
                 script {
-                    // Assuming 'notify' is a method provided by 'jenkinslib' to send notifications
-                    def notification = notify()
-                    notification.sendTelegram("Hello from Jenkins", BOT_ID, BOT_TOKEN, CHAT_ID)
-                    notification.sendMail([
-                        message: "Hello from Jenkins",
-                        subject: "Jenkins Notification"
-                    ])
+                    try {
+                        // Your build steps go here
+                        // For example:
+                        sh 'exit 1' // Simulate a build failure
+                    } catch (Exception e) {
+                        notify([
+                            message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
+                            // mailParams: [
+                            //     message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
+                            //     subject: "Jenkins Build Failure"
+                            // ]
+                        ])
+                        echo "Build failed⛔(<:>) Error: ${e.getMessage()}"
+                        currentBuild.result = 'FAILURE'
+                        throw e
+                    }
                 }
             }
         }
