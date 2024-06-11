@@ -1,0 +1,30 @@
+@Library(['jenkinslib']) _
+environment{
+            // telegram bot
+        BOT_ID= '6678469501'
+        BOT_TOKEN= 'AAGO8syPMTxn0gQGksBPRchC'
+        CHAT_ID= '1162994521'
+6678469501:AAGO8syPMTxn0gQGksBPRchC-EoC6QRoS5o
+
+      
+}
+Pipeline {
+    agent any
+    stages {
+        stage('Notify') {
+            steps {
+                script {
+                    // def notification = notify()
+                    // notification.sendTelegram("Hello from Jenkins")
+                    // notification.sendMail([
+                    //     message: "Hello from Jenkins",
+                    //     subject: "Jenkins Notification"
+                    // ])
+                    notify(
+
+                    )
+                }
+            }
+        }
+    }
+}
