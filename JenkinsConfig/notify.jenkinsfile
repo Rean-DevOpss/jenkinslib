@@ -3,7 +3,7 @@ pipeline {
     environment {
         // Telegram bot
         BOT_ID = '6678469501'
-        BOT_TOKEN = 'AAGO8syPMTxn0gQGksBPRchC'
+        BOT_TOKEN = 'AAGO8syPMTxn0gQGksBPRchC-EoC6QRoS5o'
         CHAT_ID = '1162994521'
         // // Mail configuration (optional)
         // MAIL_FROM = 'your-email@example.com'
