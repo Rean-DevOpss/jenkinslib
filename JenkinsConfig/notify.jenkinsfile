@@ -1,11 +1,12 @@
 @Library(['jenkinslib']) _
-environment{
+
+Pipeline {
+    environment{
             // telegram bot
         BOT_ID= '6678469501'
         BOT_TOKEN= 'AAGO8syPMTxn0gQGksBPRchC'
         CHAT_ID= '1162994521'
-}
-Pipeline {
+    }
     agent any
     stages {
         stage('Notify') {
