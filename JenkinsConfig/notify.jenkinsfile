@@ -22,7 +22,7 @@ pipeline {
                     - *Branch:* ${BRANCH}
                     """
                      notify([
-                            message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
+                            message: "test",
                         ])
                     // try {
                     //     // Your build steps go here
