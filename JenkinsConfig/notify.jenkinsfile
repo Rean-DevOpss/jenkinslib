@@ -33,6 +33,13 @@ pipeline {
                             //     subject: "Jenkins Build Failure"
                             // ]
                         ])
+                        notify(
+                            message: "Build failed⛔(<:>) Error: ${e.getMessage()}"
+                            // mailParams: [
+                            //     message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
+                            //     subject: "Jenkins Build Failure"
+                            // ]
+                        )
                         echo "Build failed⛔(<:>) Error: ${e.getMessage()}"
                         currentBuild.result = 'FAILURE'
                         throw e
