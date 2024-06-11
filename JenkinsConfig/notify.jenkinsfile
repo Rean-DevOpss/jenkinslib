@@ -26,12 +26,13 @@ pipeline {
         stage('Notify') {
             steps {
                 script {
-                    def successMessage = """
-                    *Deployment Successful:*
-                    - *Container:* ${env.CONTAINER_NAME}
-                    - *Branch:* ${BRANCH}
-                    """
-                    notify([message: successMessage,])    
+                    notify()
+                    // def successMessage = """
+                    // *Deployment Successful:*
+                    // - *Container:* ${env.CONTAINER_NAME}
+                    // - *Branch:* ${BRANCH}
+                    // """
+                    // notify([message: successMessage,])    
                 }
             }
         }
