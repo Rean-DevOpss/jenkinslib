@@ -14,13 +14,19 @@ pipeline {
         stage('Notify') {
             steps {
                 script {
+                    def successMessage = """
+                    *Deployment Successful:*
+                    - *Container:* ${params.CONTAINER_NAME}
+                    - *Branch:* ${BRANCH}
+                    - *Deployment URL:* [${env.DEPLOY_IP_PORT}](http://${env.DEPLOY_IP_PORT})
+                """
                     try {
                         // Your build steps go here
                         // For example:
                         sh 'exit 1' // Simulate a build failure
                     } catch (Exception e) {
                         notify([
-                            message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
+                            message: successMessage,
                             // mailParams: [
                             //     message: "Build failed⛔(<:>) Error: ${e.getMessage()}",
                             //     subject: "Jenkins Build Failure"
