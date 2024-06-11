@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
-                git 'https://github.com/roldophe/my-angular-project.git'
+                git 'https://github.com/MuyleangIng/angular-jenkins.git'
             }
         }
         stage('Write Docker file to git Repo') {
