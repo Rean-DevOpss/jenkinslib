@@ -18,6 +18,11 @@ pipeline {
     }
     agent any
     stages {
+        stage('Git Clone') {
+            steps {
+                git 'https://github.com/roldophe/my-angular-project.git'
+            }
+        }
         stage('Notify') {
             steps {
                 script {
