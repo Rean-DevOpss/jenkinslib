@@ -35,6 +35,11 @@ pipeline {
                 }
             }
         }
+        stage('ls'){
+            steps{
+                sh 'ls -la'
+            }
+        }
         stage('Ansible Version'){
             steps{
                 sh 'ansible --version'
