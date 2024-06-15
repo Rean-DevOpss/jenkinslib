@@ -47,7 +47,7 @@ pipeline {
         }
         stage('ansible playbook with extra vars'){
             steps{
-                sh 'ansible-playbook reseources/playbook/nginx-domain.yaml -e "expose_port=8082" '
+                sh 'ansible-playbook resources/ansible/playbook/nginx-domain.yaml -e "expose_port=8082" '
             }
         }
 
