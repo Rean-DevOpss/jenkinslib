@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Hello') {
             steps {
-                sh 'curl -s -X POST https://api.telegram.org/bot${env.BotToken}/sendMessage -d chat_id=${env.chat_id} -d text="Good Morning!"'
+                sh "curl -s -X POST https://api.telegram.org/bot${env.BotToken}/sendMessage -d chat_id=${env.chat_id} -d text="Good Morning!""
 
             }
         }
