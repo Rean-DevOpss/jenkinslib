@@ -30,6 +30,11 @@ pipeline {
                 }
             }
         }
+        stage('Ansible Version') {
+            steps {
+                sh 'ansible --version'
+            }
+        }
         // stage('Notify') {
         //     steps {
         //         script {
