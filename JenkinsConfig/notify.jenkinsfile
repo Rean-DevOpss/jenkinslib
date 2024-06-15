@@ -45,6 +45,12 @@ pipeline {
                 sh 'ansible --version'
             }
         }
+        stage('ansible playbook with extra vars'){
+            steps{
+                sh 'ansible-playbook reseources/playbook/nginx-domain.yaml -e "expose_port=8082" '
+            }
+        }
+
         // stage('Notify') {
         //     steps {
         //         script {
