@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Git Clone') {
             steps {
-                echo " {env.BotToken}"
+                echo " ${env.BotToken}"
             }
         }
         stage('Hello') {
