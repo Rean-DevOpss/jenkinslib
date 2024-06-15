@@ -3,6 +3,8 @@ pipeline {
     parameters{
         choice(name: "branch", choices: ["production", "staging", "development"], description: "Sample multi-choice parameter")
         text(name: "expose_port", defaultValue: "8080", description: "for expose port")
+        booleanParam(name: "skip_deploy", defaultValue: true, description: "use for skip stage")
+
     }
     stages {
         stage('Git clone with choice ') {
@@ -29,6 +31,11 @@ pipeline {
             }
         }
         stage('deploy'){
+            when {
+                expression {
+                    return ! params.skip_deploy
+                }
+            }
             steps{
                 sh 'docker run -d -p ${expose_port}:80 reactwithchoice:${BUILD_NUMBER} '
             }
