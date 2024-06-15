@@ -4,6 +4,8 @@ pipeline {
         choice(name: "branch", choices: ["production", "staging", "development"], description: "Sample multi-choice parameter")
         text(name: "expose_port", defaultValue: "8080", description: "for expose port")
         booleanParam(name: "skip_deploy", defaultValue: true, description: "use for skip stage")
+        booleanParam(name: "skip_build", defaultValue: true, description: "use for skip stage")
+
 
     }
     stages {
@@ -26,6 +28,11 @@ pipeline {
             }
         }
         stage('build with dockerfile'){
+            when {
+                expression {
+                    return ! params.skip_build
+                }
+            }
             steps{
                 sh 'docker build -t reactwithchoice:${BUILD_NUMBER} -f react-dockerfile .'
             }
