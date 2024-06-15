@@ -40,16 +40,21 @@ pipeline {
                 sh 'ls -la'
             }
         }
+        stage('ansible ping pong '){
+            steps{
+                sh 'ansible -i all resources/ansible/host/host.ini  -m ping'
+            }
+        }
         stage('Ansible Version'){
             steps{
                 sh 'ansible --version'
             }
         }
-        stage('ansible playbook with extra vars'){
-            steps{
-                sh 'ansible-playbook resources/ansible/playbook/nginx-domain.yaml -e "expose_port=8082" '
-            }
-        }
+        // stage('ansible playbook with extra vars'){
+        //     steps{
+        //         sh 'ansible-playbook -i resources/ansible/host/host.ini  resources/ansible/playbook/nginx-domain.yaml -e "expose_port=8082" '
+        //     }
+        // }
 
         // stage('Notify') {
         //     steps {
