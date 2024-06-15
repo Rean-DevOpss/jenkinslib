@@ -15,15 +15,6 @@ pipeline {
     }
   
     stages {
-        stage('Print Parameters') {
-            steps {
-                echo "Boolean parameter: ${params.TEST_BOOLEAN}"
-                echo "String parameter: ${params.TEST_STRING}"
-                echo "Text parameter: ${params.TEST_TEXT}"
-                echo "Password parameter: ${params.TEST_PASSWORD}"
-                echo "Choice parameter: ${params.TEST_CHOICE}"
-            }
-        }
         stage('git clone with choice') {
             steps {
                 script {
