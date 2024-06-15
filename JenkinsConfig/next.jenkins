@@ -25,7 +25,6 @@ pipeline {
                     } else {
                         echo "Development"
                     }
-                    echo "Choice parameter: ${params.TEST_CHOICE}"
                 }
             }
         }
