@@ -7,18 +7,26 @@ pipeline {
     }
   
     stages {
-        
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
         stage('Git Clone') {
             steps {
-                echo " ${env.BotToken}"
+                git 'https://github.com/MuyleangIng/nextjs_docker.git'
             }
         }
         stage('Hello') {
             steps {
-                sh 'curl -s -X POST \"https://api.telegram.org/bot${env.BotToken}/sendMessage\" -d chat_id=${env.chat_id} -d text="Good Morning!"'
 
+                sh "curl -s -X POST \"https://api.telegram.org/bot${env.BotToken}/sendMessage\" -d chat_id=${env.chat_id} -d text=\"Good Morning!\""
             }
         }
-       
+        stage('List Directory') {
+            steps {
+                sh "ls -lrt"
+            }
+        }
     }
 }
