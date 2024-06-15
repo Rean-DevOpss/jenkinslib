@@ -18,7 +18,11 @@ pipeline {
     }
     agent any
     stages {
-
+        stage('Clean workspace'){
+            steps{
+                cleanWs()
+            }
+        }
         stage('Git Clone') {
             steps {
                 git 'https://github.com/MuyleangIng/angular-jenkins.git'
@@ -31,12 +35,7 @@ pipeline {
                 }
             }
         }
-        stage('Ansible Version') {
-            steps {
-                sh 'ansible --version'
-            }
-        }
-        stage
+        stage('Ansible Version')
         // stage('Notify') {
         //     steps {
         //         script {
@@ -50,10 +49,5 @@ pipeline {
         //         }
         //     }
         // }
-    }
-    post{
-        always{
-            cleanWs()
-        }
     }
 }
