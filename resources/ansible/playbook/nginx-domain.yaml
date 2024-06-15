@@ -13,7 +13,7 @@
 
     - name: Setup Nginx Server Block
       template:
-        src: ../template/nginx_domain.conf.j2
+        src: resources/ansible/template/nginx_domain.conf.j2
         dest: "/etc/nginx/sites-available/{{ domain_name }}"
 
     - name: Enable Nginx configuration
