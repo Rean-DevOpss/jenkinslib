@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Git Clone') {
             steps {
-                git 'https://github.com/MuyleangIng/nextjs_docker.git'
+                git branch: 'main' , url:'https://github.com/MuyleangIng/nextjs_docker.git'
             }
         }
         stage('Hello') {

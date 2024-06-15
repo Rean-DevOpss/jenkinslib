@@ -1,4 +1,5 @@
 @Library(['jenkinslib']) _
+
 pipeline {
     agent any
     environment {
@@ -14,22 +15,27 @@ pipeline {
     }
   
     stages {
-        stage('Git Clone') {
+        stage('Print Parameters') {
             steps {
-                git 'https://github.com/MuyleangIng/nextjs_docker.git'
+                echo "Boolean parameter: ${params.TEST_BOOLEAN}"
+                echo "String parameter: ${params.TEST_STRING}"
+                echo "Text parameter: ${params.TEST_TEXT}"
+                echo "Password parameter: ${params.TEST_PASSWORD}"
+                echo "Choice parameter: ${params.TEST_CHOICE}"
             }
         }
-        stage('Write Docker file to git Repo') {
+        stage('git clone with choice') {
             steps {
                 script {
-                    echo "Build number is ${BUILD_NUMBER}"
-                    nextWithDocker(DOCKER_TAG,ImageName)
+                    if (params.TEST_CHOICE == 'production') {
+                        echo "Production"
+                    } else if (params.TEST_CHOICE == 'staging') {
+                        echo "Staging"
+                    } else {
+                        echo "Development"
+                    }
+                    echo "Choice parameter: ${params.TEST_CHOICE}"
                 }
-            }
-        }
-        stage('List Directory') {
-            steps {
-                sh "ls -lrt"
             }
         }
     }
