@@ -2,6 +2,7 @@
 - name: Deploy Docker container with variables
   hosts: localhost
   become: true
+  remote_src: true 
   vars:
     domain_name: "gitlabsopheng.sen-pai.live"
     app_port: "{{ expose_port }}" # Corrected missing quote
