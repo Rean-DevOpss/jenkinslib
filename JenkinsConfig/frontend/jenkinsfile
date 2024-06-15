@@ -8,10 +8,10 @@ pipeline {
         stage('Git clone with choice ') {
             steps {
                 script{
-                    if (params.branch == production ){
+                    if (params.branch == 'production' ){
                         echo " production"
                         git branch:'main' , url: 'https://github.com/MuyleangIng/reactjs-with-dockerfile'
-                    } else if (params.branch == staging){
+                    } else if (params.branch == 'staging'){
                         echo " staging"
                         git branch:'master' , url: 'https://github.com/MuyleangIng/reactjs-with-dockerfile'
 
