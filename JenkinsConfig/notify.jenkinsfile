@@ -4,7 +4,7 @@ pipeline {
         // Telegram bot
         BOT_ID = '6678469501'
         BOT_TOKEN = 'AAGO8syPMTxn0gQGksBPRchC-EoC6QRoS5o'
-        CHAT_ID = '1162994521'
+        CHAT_ID = '-1002036852563'
 
         BRANCH = 'main'
         CONTAINER_NAME = 'angular-docker'
@@ -25,49 +25,27 @@ pipeline {
         }
         stage('Git Clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/MuyleangIng/jenkinslib.git'
+                git branch: 'master', url: 'https://github.com/MuyleangIng/angular-jenkins.git'
             }
         }
-        stage('test execution with shell with lib groovy'){
+        
+        stage('build with anguar ') {
+             steps {
+                 script {
+                   
+                     def successMessage = """
+                     *Deployment Successful:*
+                     - *Container:* ${env.CONTAINER_NAME}
+                     - *Branch:* ${BRANCH}
+                     """
+                     angular([message: successMessage,])    
+                 }
+             }
+         }
+        stage('deploy with angular'){
             steps{
-                script{
-                    scripts()
-                }
+                sh 'docker run -d -p 8082:4000 angular-docker:${TAG} '
             }
-        }
-        stage('ls'){
-            steps{
-                sh 'ls -la'
-            }
-        }
-        stage('ansible ping pong '){
-            steps{
-                sh 'ansible -i all resources/ansible/host/host.ini  -m ping'
-            }
-        }
-        stage('Ansible Version'){
-            steps{
-                sh 'ansible --version'
-            }
-        }
-        // stage('ansible playbook with extra vars'){
-        //     steps{
-        //         sh 'ansible-playbook -i resources/ansible/host/host.ini  resources/ansible/playbook/nginx-domain.yaml -e "expose_port=8082" '
-        //     }
-        // }
-
-        // stage('Notify') {
-        //     steps {
-        //         script {
-        //             // notify()
-        //             def successMessage = """
-        //             *Deployment Successful:*
-        //             - *Container:* ${env.CONTAINER_NAME}
-        //             - *Branch:* ${BRANCH}
-        //             """
-        //             notify([message: successMessage,])    
-        //         }
-        //     }
-        // }
+        } 
     }
 }
