@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Git Clone') {
             steps {
-                git 'https://github.com/MuyleangIng/nextjs_docker.git'
+                echo " {env.BotToken}"
             }
         }
         stage('Hello') {
