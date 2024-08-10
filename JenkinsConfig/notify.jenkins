@@ -2,7 +2,8 @@
 pipeline {
     agent any
     environment {
-        chat_id = '1669468429'
+        chat_id = '1044953716'
+        BotToken = '7375341533:AAEnLFCVK3nATN_BYI885tFIEEqOEQGwAcY'
     }
   
     stages {

@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    environment {
+        TELEGRAM_BOT_TOKEN = credentials('telegram-bot-token')  // Store bot token in Jenkins credentials
+        TELEGRAM_GROUP_CHAT_ID = credentials('telegram-group-chat-id')  // Store group chat ID in Jenkins credentials
+    }
+
+    stages {
+        stage('Send Good Morning Message') {
+            steps {
+                script {
+                    def message = "Good Morning!"
+                    def telegramApiUrl = "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
+                    sh "curl -s -X POST ${telegramApiUrl} -d chat_id=${TELEGRAM_GROUP_CHAT_ID} -d text='${message}'"
+                }
+            }
+        }
+    }
+}
