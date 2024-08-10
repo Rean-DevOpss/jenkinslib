@@ -2,7 +2,7 @@
 pipeline {
     agent any
     environment {
-        chat_id = '1044953716'
+        chat_id = '-4243037347'
         BotToken = '7375341533:AAEnLFCVK3nATN_BYI885tFIEEqOEQGwAcY'
     }
   
