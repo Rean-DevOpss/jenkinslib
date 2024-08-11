@@ -6,7 +6,6 @@ pipeline {
         booleanParam(name: "skip_deploy", defaultValue: false, description: "use for skip stage")
         booleanParam(name: "skip_build", defaultValue: false, description: "use for skip stage")
 
-
     }
     stages {
         stage('Git clone with choice ') {
@@ -14,15 +13,15 @@ pipeline {
                 script{
                     if (params.branch == 'production' ){
                         echo " production"
-                        git branch:'main' , url: 'https://github.com/MuyleangIng/reactjs-with-dockerfile'
+                        git branch:'main' , url: 'https://github.com/Rean-DevOpss/reactjs-with-dockerfile'
                          sh "curl -s -X POST \"https://api.telegram.org/bot${env.BotToken}/sendMessage\" -d chat_id=${env.chat_id} -d text=\"Pull from branch success\""
                     } else if (params.branch == 'staging'){
                         echo " staging"
-                        git branch:'master' , url: 'https://github.com/MuyleangIng/reactjs-with-dockerfile'
+                        git branch:'master' , url: 'https://github.com/Rean-DevOpss/reactjs-with-dockerfile'
 
                     } else {
                         echo " development"
-                        git branch:'developer' , url: 'https://github.com/MuyleangIng/reactjs-with-dockerfile'
+                        git branch:'developer' , url: 'https://github.com/Rean-DevOpss/reactjs-with-dockerfile'
 
                     }
                 }
