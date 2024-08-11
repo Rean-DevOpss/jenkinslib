@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+            TELEGRAM_BOT_TOKEN = credentials('telegram-bot-token')  // Correctly reference Jenkins credential for bot token
+            TELEGRAM_CHAT_ID = credentials('telegram-group-chat-id')  // Correctly reference Jenkins credential for group chat ID
+    }
     parameters{
         choice(name: "branch", choices: ["production", "staging", "development"], description: "Sample multi-choice parameter")
         text(name: "expose_port", defaultValue: "8081", description: "for expose port")
@@ -14,6 +18,9 @@ pipeline {
                     if (params.branch == 'production' ){
                         echo " production"
                         git branch:'main' , url: 'https://github.com/Rean-DevOpss/reactjs-with-dockerfile'
+                        def message = "Pull from branch success !"
+                        def telegramApiUrl = "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
+                        sh "curl -s -X POST ${telegramApiUrl} -d chat_id=${TELEGRAM_CHAT_ID} -d text='${message}'"
                         //  sh "curl -s -X POST \"https://api.telegram.org/bot${env.BotToken}/sendMessage\" -d chat_id=${env.chat_id} -d text=\"Pull from branch success\""
                     } else if (params.branch == 'staging'){
                         echo " staging"
