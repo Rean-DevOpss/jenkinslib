@@ -2,9 +2,9 @@ pipeline {
     agent any
     parameters{
         choice(name: "branch", choices: ["production", "staging", "development"], description: "Sample multi-choice parameter")
-        text(name: "expose_port", defaultValue: "8081", description: "for expose port")
-        booleanParam(name: "skip_deploy", defaultValue: false, description: "use for skip stage")
-        booleanParam(name: "skip_build", defaultValue: false, description: "use for skip stage")
+        // text(name: "expose_port", defaultValue: "8081", description: "for expose port")
+        // booleanParam(name: "skip_deploy", defaultValue: false, description: "use for skip stage")
+        // booleanParam(name: "skip_build", defaultValue: false, description: "use for skip stage")
 
     }
     stages {
